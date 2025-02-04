@@ -92,7 +92,7 @@ fn main() -> Result<()> {
     }));
 
     // PORT set on render.com, or 3030 for localhost
-    let port = env::var("PORT").unwrap_or_else(String::from("3030"));
+    let port = env::var("PORT").unwrap_or_else(|_| String::from("3030"));
     
     // 0.0.0.0 allows connections to be from anywhere
     let address = format!("0.0.0.0:{port}");
