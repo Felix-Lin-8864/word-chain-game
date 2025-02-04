@@ -6,10 +6,11 @@ function append_word(word) {
     const list_item = document.createElement("li");
     list_item.textContent = word;
     word_list.appendChild(list_item);
+    document.getElementById("prev-word").innerText = "Previous Word: " + word;
 }
 
 function update_game_state(data) {
-    error_popup = document.getElementById("error-popup");
+    const error_popup = document.getElementById("error-popup");
     // remove any prev error popups from screen
     error_popup.style.display = "none";
 
@@ -30,7 +31,6 @@ function update_game_state(data) {
         return;
     }
 
-    document.getElementById("prev-word").innerText = "Previous Word: " + data.new_word;
     append_word(data.new_word);
 
     const word_list = document.getElementById("word-list");
@@ -39,17 +39,6 @@ function update_game_state(data) {
 
 socket.onopen = function (event) {
     console.log("Connected");
-
-    try {
-        const data = JSON.parse(event.data);
-        data.words.forEach(word => {
-            append_word(word);
-        });
-
-        document.getElementById("prev-word").innerText = "Previous Word: " + data.new_word;
-    } catch (error) {
-        console.error("Failed to parse server msg: ", error);
-    }
 };
 
 socket.onclose = function (event) {
@@ -63,15 +52,22 @@ socket.onerror = function (error) {
 socket.onmessage = function(event) {
     try {
         const data = JSON.parse(event.data);
-        update_game_state(data);
+        
+        if (data.words) {
+            data.words.forEach(word => {
+                append_word(word);
+            });
+        } else {
+            update_game_state(data);
+        }
     } catch (error) {
         console.error("Failed to parse server msg: ", error);
     }
 };
 
 document.getElementById("submit-word").addEventListener("click", async function () {
-    while (socket.readyState === WebSocket.CONNECTING) {
-        console.error("Socket is in a connecting state");
+    while (socket.readyState !== WebSocket.OPEN) {
+        console.error("Socket is not OPEN, retrying");
         await new Promise(r => setTimeout(r, 500));
     }
     
