@@ -43,7 +43,6 @@ function update_game_state(data) {
 
 socket.onopen = function () {
     console.log("Connected");
-    append_word("a");
     document.getElementById("loading-gif").remove();
     document.getElementById("word-input").disabled = false;
     document.getElementById("submit-word").disabled = false;

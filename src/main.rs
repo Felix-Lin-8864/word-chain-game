@@ -35,6 +35,10 @@ impl Handler for Server {
                 }
             }
             
+            if word.is_empty() {
+                return Some(String::from("Word cannot be empty"));
+            }
+            
             // check the word-chain rule is followed
             if let Some(prev_word) = game.words.last() {
                 if prev_word.chars().last().unwrap() != word.chars().next().unwrap() {
@@ -43,9 +47,7 @@ impl Handler for Server {
             }
             
             // validate the word itself
-            if word.is_empty() {
-                Some(String::from("Word cannot be empty"))
-            } else if game.words.contains(word) {
+            if game.words.contains(word) {
                 Some(format!("Your word, '{word}', has already been used in the chain"))
             } else if !game.dict.contains(word) {
                 Some(format!("Your word, '{word}', is not a valid English word"))
