@@ -1,6 +1,10 @@
 // const socket = new WebSocket("ws://127.0.0.1:3030");
 const socket = new WebSocket("wss://word-chain-game-yxws.onrender.com");
 
+// disable buttons until socket is connected
+document.getElementById("word-input").disabled = true;
+document.getElementById("submit-word").disabled = true;
+
 function append_word(word) {
     const word_list = document.getElementById("word-list");
     const list_item = document.createElement("li");
@@ -37,8 +41,12 @@ function update_game_state(data) {
     word_list.scrollTop = word_list.scrollHeight;
 }
 
-socket.onopen = function (event) {
+socket.onopen = function () {
     console.log("Connected");
+    append_word("a");
+    document.getElementById("loading-gif").remove();
+    document.getElementById("word-input").disabled = false;
+    document.getElementById("submit-word").disabled = false;
 };
 
 socket.onclose = function (event) {
@@ -66,11 +74,6 @@ socket.onmessage = function(event) {
 };
 
 document.getElementById("submit-word").addEventListener("click", async function () {
-    while (socket.readyState !== WebSocket.OPEN) {
-        console.error("Socket is not OPEN, retrying");
-        await new Promise(r => setTimeout(r, 500));
-    }
-    
     const word_input = document.getElementById("word-input");
     socket.send(word_input.value);
     word_input.value = "";
@@ -82,4 +85,3 @@ document.getElementById("word-input").addEventListener("keypress", function(e) {
         document.getElementById("submit-word").click();
     }
 });
-

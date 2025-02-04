@@ -69,7 +69,6 @@ impl Handler for Server {
         game.prev_submitter = Some(self.out.clone());
         
         let res = serde_json::json!({
-            "words": game.words,
             "new_word": word,
         });
         

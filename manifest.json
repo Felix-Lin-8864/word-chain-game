@@ -3,7 +3,7 @@
     "description": "Word chain game using web sockets hosted on render.com",
     "version": "1.0",
     "manifest_version": 3,
-    "permissions": ["storage"],
+    "permissions": [],
     "action": {
       "default_popup": "index.html",
       "default_icon": "imgs/icon.PNG"
