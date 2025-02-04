@@ -1,4 +1,5 @@
-const socket = new WebSocket("ws://127.0.0.1:3030");
+// const socket = new WebSocket("ws://127.0.0.1:3030");
+const socket = new WebSocket("wss://word-chain-game-yxws.onrender.com");
 
 function append_word(word) {
     const word_list = document.getElementById("word-list");
