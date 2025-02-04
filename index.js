@@ -32,7 +32,8 @@ function update_game_state(data) {
 
     document.getElementById("prev-word").innerText = "Previous Word: " + data.new_word;
     append_word(data.new_word);
-    
+
+    const word_list = document.getElementById("word-list");
     word_list.scrollTop = word_list.scrollHeight;
 }
 
@@ -68,7 +69,12 @@ socket.onmessage = function(event) {
     }
 };
 
-document.getElementById("submit-word").addEventListener("click", function () {
+document.getElementById("submit-word").addEventListener("click", async function () {
+    while (socket.readyState === WebSocket.CONNECTING) {
+        console.error("Socket is in a connecting state");
+        await new Promise(r => setTimeout(r, 500));
+    }
+    
     const word_input = document.getElementById("word-input");
     socket.send(word_input.value);
     word_input.value = "";
