@@ -10,6 +10,7 @@ struct Game {
 struct Server {
     out: Sender,
     game: Arc<Mutex<Game>>,
+    dev_code: String,
 }
 
 impl Handler for Server {
@@ -26,6 +27,14 @@ impl Handler for Server {
     fn on_message(&mut self, msg: Message) -> Result<()> {
         let mut game = self.game.lock().unwrap();
         let word = msg.as_text()?.trim().to_lowercase();
+
+        // if prev_submitter is current one, and the dev_code is correct, clear prev_submitter
+        if let Some(prev_submitter) = &game.prev_submitter {
+            if prev_submitter == &self.out && word == self.dev_code.clone() + "clear-prev-submitter" {
+                game.prev_submitter = None;
+                return Ok(());
+            }
+        }
 
         fn error_check(game: &Game, word: &String, out: &Sender) -> Option<String> {
             // check the consecutive submission rule is followed
@@ -101,5 +110,6 @@ fn main() -> Result<()> {
     listen(address, |out| Server {
         out,
         game: game.clone(),
+        dev_code: String::from("THERE-ARE-128000-to-200000-WHALE-SHARKS-IN-THE-WORLD"),
     })
 }

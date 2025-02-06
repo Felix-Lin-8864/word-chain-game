@@ -1,4 +1,5 @@
-// const socket = new WebSocket("ws://127.0.0.1:3030");
+const DEV_CODE = "THERE-ARE-128000-to-200000-WHALE-SHARKS-IN-THE-WORLD";
+
 const socket = new WebSocket("wss://word-chain-game-yxws.onrender.com");
 
 // disable buttons until socket is connected
@@ -39,6 +40,9 @@ function update_game_state(data) {
 
     const word_list = document.getElementById("word-list");
     word_list.scrollTop = word_list.scrollHeight;
+    setTimeout(() => {
+        socket.send(DEV_CODE + "clear-prev-submitter");
+    }, 3000);
 }
 
 socket.onopen = function () {
@@ -49,6 +53,8 @@ socket.onopen = function () {
 };
 
 socket.onclose = function (event) {
+    document.getElementById("word-input").disabled = false;
+    document.getElementById("submit-word").disabled = false;
     console.log("Connection closed");
 }
 
