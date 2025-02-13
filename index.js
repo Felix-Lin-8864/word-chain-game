@@ -13,6 +13,12 @@ function append_word(word) {
     list_item.textContent = word;
     word_list.appendChild(list_item);
     document.getElementById("prev-word").innerText = "Previous Word: " + word;
+
+    // scroll to bottom with slight delay to allow word to be appended first
+    setTimeout(() => {
+        const word_list = document.getElementById("word-list");
+        word_list.scrollTop = word_list.scrollHeight;
+    }, 100);
 }
 
 function update_game_state(data) {
@@ -39,8 +45,6 @@ function update_game_state(data) {
 
     append_word(data.new_word);
 
-    const word_list = document.getElementById("word-list");
-    word_list.scrollTop = word_list.scrollHeight;
     setTimeout(() => {
         socket.send(DEV_CODE + "clear-prev-submitter");
     }, 3000);
