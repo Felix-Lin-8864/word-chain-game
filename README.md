@@ -1,5 +1,7 @@
 # Word-Chain-Inator
 
+[![icon](https://i.imgur.com/MLudfH7.png)](https://chromewebstore.google.com/detail/word-chain-inator/ocmjgbgadgaombpgidnbfckikodidojf)
+
 ## The Project
 
 ### Aim
@@ -7,7 +9,8 @@ Primary Aim: To have a fully deployed, functional web application utilising with
 
 Secondary Aim: Attempt communication between different programming languages (albeit using sockets instead of FFI).
 
-### Composition [![JS](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+### Composition 
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 
 This project is a simple web socket application. The frontend is composed in JavaScript with basic HTML and CSS (not the focus of this project). The user backend is written in JavaScript with the WebSocket API, whilst the server backend is written in Rust with the ws crate/library for web socket connection and communication, and serde/serde_json to write and parse JSON for the communication of data over web sockets. Rust was chosen for this project, as it offers fast performance times, memory and type-safety and digestable concurrency control primitives, all of which are valuable for a multi-user web application.
 
