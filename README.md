@@ -1,7 +1,10 @@
-# The Project
+# Word-Chain-Inator
+
+## The Project
 
 ### Aim
 Primary Aim: To have a fully deployed, functional web application utilising with web sockets.
+
 Secondary Aim: Attempt communication between different programming languages (albeit using sockets instead of FFI).
 
 ### Composition [![JS](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -18,8 +21,7 @@ This project is deployed as both a public chrome extension and on GitHub pages; 
 - [English Dictionary (words.json)](https://github.com/dwyl/english-words)
 - [ws crate](https://crates.io/crates/ws/0.9.2)
 
-
-# The Game
+## The Game
 ![game gif](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTZodmp0b3U3eTQ3ZjU5Y2RqZml6Y25vem91YWwwMml3NjY5aW14cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2XlLH5o5gIIYC2sviv/giphy.gif)
 
 A simple multiplayer word chain game:
@@ -30,8 +32,7 @@ A simple multiplayer word chain game:
 
 Play from either the website or the chrome extension :D.
 
-
-# PLEASE NOTE
+## PLEASE NOTE
 that the backend is hosted on render.com's free services, so the web socket may take a minute or two to spin up if inactive, or a couple seconds to establish a connection.
 
 (please wait patiently so that the monkeys can work):
