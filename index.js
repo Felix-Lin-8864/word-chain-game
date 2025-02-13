@@ -1,6 +1,7 @@
-const DEV_CODE = "THERE-ARE-128000-to-200000-WHALE-SHARKS-IN-THE-WORLD";
+const DEV_CODE = "there-are-128000-to-200000-whale-sharks-in-the-world";
 
 const socket = new WebSocket("wss://word-chain-game-yxws.onrender.com");
+// const socket = new WebSocket("ws://localhost:3030");
 
 // disable buttons until socket is connected
 document.getElementById("word-input").disabled = true;
